@@ -1,0 +1,46 @@
+﻿@model ProductDetailsServiceModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container-fluid">
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark">
+            Edit &#32<i class="fas fa-edit fa-1x"></i>
+        </a>
+        <span>|</span>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+            Add to archive &#32<i class="fas fa-trash-alt"></i>
+        </a>
+        <hr />
+    </div>
+    <div class="row fh5co-post-entry single-entry">
+        <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+            <figure class="animate-box">
+                <img src="@Model.ImagePath" alt="Image" class="img-responsive">
+            </figure>
+            <h2 class="fh5co-article-title animate-box">@Model.Title</h2>
+            <h5 class="animate-box">Catalog number: @Model.PurchaseNumber</h5>
+            <span class="fh5co-meta fh5co-date animate-box">Added on: @Model.DateOfAdded.ToLocalTime()</span>
+            @if (Model.DateOfLastModified != null)
+            {
+                <span class="fh5co-meta fh5co-date animate-box">
+                    Last modified: @Model.DateOfLastModified?.ToLocalTime()
+                </span>
+            }
+            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                <div class="row">
+                    <div class="col-lg-12 animate-box">
+                        <div class="fh5co-highlight right">
+                            <h4>Description</h4>
+                            <p>@Model.Description</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="fb-like col-md-12" data-href="https://localhost:5001/products/details/@(Model.Id.ToLower())" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flocalhost%3A5001%2Fproducts%2Fdetails&amp;src=sdkpreparse"></div>
+    <div class="fb-comments col-md-12" data-href="https://localhost:5001/products/details/@(Model.Id.ToLower())" data-numposts="5"></div>
+</div>

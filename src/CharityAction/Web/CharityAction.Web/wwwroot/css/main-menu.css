@@ -1,0 +1,14 @@
+﻿header .main-menu-color {
+    background-color: #FFD733;
+}
+
+#text-main-menu {
+    transition: 0.3s;
+    font-size: larger;
+    color: #000000;
+}
+
+#text-main-menu:focus,
+#text-main-menu:hover {
+    color: #ffffff;
+}

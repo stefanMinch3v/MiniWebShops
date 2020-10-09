@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div id="background-img" class="carousel-item active"></div>
+
+        <div id="background-img-second" class="carousel-item"></div>
+
+        <div id="background-img-third" class="carousel-item"></div>
+
+        <div class="event-box">
+            <div class="col-md-3"></div>
+
+            <div class="square1 col-md-3">
+                <p>
+                    Upcoming events: {Minno selishte cherno more, klub na pensionera}
+                    <a href="/">Read more</a>
+                </p>
+                <p>On: {24.01.2020}</p>
+            </div>
+
+            <div class="square2 col-md-3">
+                <i class="far fa-clock fa-3x"></i>
+                <p class="timer col-md-12">{04} : {11} : {25} : {30}</p>
+                <p class="timer-days col-md-12">Day Hour Min Sec</p>
+            </div>
+
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <!-- Controls for carousel -->
+    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+        <i class="fa fa-chevron-circle-left fa-2x"></i>
+    </a>
+
+    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+        <i class="fas fa-chevron-circle-right fa-2x"></i>
+    </a>
+</div>

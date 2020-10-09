@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\CharityAction.Common\CharityAction.Common.csproj" />
+    <ProjectReference Include="..\..\Data\CharityAction.Data\CharityAction.Data.csproj" />
+  </ItemGroup>
+
+</Project>

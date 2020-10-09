@@ -1,0 +1,59 @@
+﻿@model JewelleryShop.Web.ViewModels.Products.ProductFormViewModel
+
+<div class="col-md-4">
+    <form asp-controller="Products" method="post" id="my-form" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" id="title" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" rows="10" class="form-control message" id="description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PurchaseNumber" class="control-label"></label>
+            <input asp-for="PurchaseNumber" class="form-control" id="purchase-number" />
+            <span asp-validation-for="PurchaseNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="control-label"></label>
+            <input asp-for="Price" class="form-control" type="number" id="price" min="0" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        @if (Model.IsEditModel)
+        {
+            <div class="form-group">
+                <h5>Current image</h5>
+                <img src="@Model.ImagePath" />
+            </div>
+        }
+
+        <div class="form-group">
+            @if (Model.IsEditModel)
+            {
+                <label asp-for="Image" class="control-label">Upload new image</label>
+            }
+            else
+            {
+                <label asp-for="Image" class="control-label"></label>
+            }
+
+            <input asp-for="ImagePath" type="hidden" value="@Model.ImagePath" />
+            <input asp-for="Image" id="image" class="form-control btn btn-default" type="file" accept="image/*" />
+        </div>
+
+        <div class="form-group create-product">
+            <input type="submit" value="Save" class="btn btn-primary" id="btn-create" />
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-action="LoginImgurProfile" class="btn btn-info">Login to your Imgur profile here!</a>
+</div>

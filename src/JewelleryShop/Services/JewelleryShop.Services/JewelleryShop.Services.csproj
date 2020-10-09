@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Imgur.API" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\JewelleryShop.Common\JewelleryShop.Common.csproj" />
+    <ProjectReference Include="..\..\Data\JewelleryShop.Data\JewelleryShop.Data.csproj" />
+  </ItemGroup>
+
+</Project>

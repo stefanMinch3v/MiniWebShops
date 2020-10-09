@@ -1,0 +1,165 @@
+﻿@model IReadOnlyCollection<CharityAction.Services.Events.Models.EventListsServiceModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Events Index</h1>
+
+<div id="background-img-event" class=""></div>
+
+<div class="heart">
+    <i class="fas fa-heart fa-stack-1x"></i>
+</div>
+
+@if (this.User.IsInRole(WebConstants.AdministratorRole))
+{
+    <a asp-action="Create" class="btn btn-primary">Create</a>
+}
+
+<section class="events-list">
+
+    @foreach (var element in Model)
+    {
+        <article class="event">
+
+            <section class="event-media">
+                <div class="image-main">
+                    <a asp-action="Details" asp-route-id="@element.Id">
+                        <img src="@element.BackgroundImageUrl" onload="style.opacity=1">
+                    </a>
+                </div>
+            </section>
+
+            <section class="event-content">
+                <header>
+                    <a asp-action="Details" asp-route-id="@element.Id" class="category">More info</a>
+                    <h2 class="card-title">@element.Title</h2>
+                </header>
+
+                <section class="event-content-inner">
+                    <p>Start date: @element.StartDate.ToLocalTime()</p>
+                    @if (element.EndDate.HasValue)
+                    {
+                        <p>End date: @element.EndDate.Value.ToLocalTime()</p>
+                    }
+                </section>
+            </section>
+
+            @if (this.User.IsInRole(WebConstants.AdministratorRole))
+            {
+                <section class="event-footer">
+                    <a asp-action="Edit" asp-route-id="@element.Id">
+                        <i class="fas fa-edit"></i>Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@element.Id" asp-route-eventTitle="@element.Title" class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>Delete
+                    </a>
+                </section>
+            }
+        </article>
+    }
+
+</section>
+
+@section Scripts {
+<script defer>
+    (function () {
+        let page = 2;
+        const isAdmin = '@this.User.IsInRole(WebConstants.AdministratorRole)' === 'True';
+
+        function ajaxRequest() {
+            const isBottom = $(window).scrollTop() + $(window).height() >= ($(document).height() - 50);
+
+            if (isBottom) {
+                const loading = $('<div>')
+                    .addClass('fa-5x text-center')
+                    .append($('<i>')
+                        .addClass('fas fa-spinner fa-pulse'));
+
+                $('.footer').prepend(loading);
+
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("Index")',
+                    data: { 'page': page },
+                    success: function(data) {
+                        if (data.length < 1 || !data) {
+                            window.removeEventListener('scroll', ajaxRequest);
+
+                            loading.detach();
+
+                            $('body')
+                                .append($('<h5>')
+                                    .addClass('text-center')
+                                    .text('No more results!')
+                                    .css({ 'color': '#FFD733', 'padding-bottom': '1rem' }));
+                            return;
+                        }
+
+                        page++;
+
+                        for (var i = 0; i < data.length; i++) {
+                            const id = data[i].id;
+                            const backgroundImg = data[i].backgroundImageUrl;
+                            const startDate = data[i].startDate;
+                            const endDate = data[i].endDate ? data[i].endDate : null;
+                            const title = data[i].title;
+                            let adminSection;
+                            // TODO rewrite code below and add End date
+
+                            const section = $('<section>').addClass('event-media');
+                            const div = $('<div>').addClass('image-main').appendTo(section);
+                            const aHref = $(`<a href='/events/details/${id}'>`).appendTo(div);
+                            const img = $(`<img src='${backgroundImg}'>`).css('opacity', 1).appendTo(aHref);
+
+                            const sectionContent = $('<section>').addClass('event-content');
+                            const header = $('<header>').appendTo(sectionContent);
+                            const aHref2 = $(`<a href='/events/details/${id}'>`).addClass('category').text('More info').appendTo(header);
+                            const h2 = $('<h2>').addClass('card-title').text(`${title}`).appendTo(header);
+
+                            const sectionInnerContent = $('<section>').addClass('event-content-inner').appendTo(sectionContent);
+                            const p = $('<p>').text(`${startDate}`).appendTo(sectionInnerContent);
+
+                            const article = $('<article>').addClass('event').css('display', 'none');
+
+                            article
+                                .append(section)
+                                .append(sectionContent);
+
+                            if (isAdmin) {
+                                adminSection = $('<section>')
+                                    .addClass('event-footer')
+                                    .append($(`<a href='/events/edit/${id}'>`)
+                                        .append($('<i>').addClass('fas fa-edit'))
+                                        .append('Edit'))
+                                    .append($(`<a href='/events/delete/${id}?eventTitle=${title}'>`)
+                                        .addClass('delete-btn')
+                                        .append($('<i>').addClass('fas fa-trash-alt'))
+                                        .append('Delete')
+                                        .on('click', () => {
+                                            return confirm(`The event is going to be archived ?`);
+                                        }));
+
+                                article.append(adminSection);
+                            }
+
+                            article
+                                .appendTo($('.events-list'))
+                                .fadeIn(800);
+
+                            loading.detach();
+                        }
+                    },
+                });
+            }
+        };
+
+        window.addEventListener('scroll', ajaxRequest);
+
+        $('.delete-btn').on('click', () => {
+            return confirm(`The event is going to be archived ?`);
+        })
+    })();
+</script>
+}

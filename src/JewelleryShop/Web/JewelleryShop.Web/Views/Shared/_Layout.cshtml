@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JewelleryShop</title>
+    <meta name="description" content="Change the description" />
+    <meta name="keywords" content="Change the keywords" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome-5-css/css/all.min.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+              asp-fallback-href="~/lib/font-awesome-5-css/css/all.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" />
+    </environment>
+    <!-- Animate -->
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <!-- Icomoon -->
+    <link rel="stylesheet" href="~/css/icomoon.css" />
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!-- Sweet alert2 -->
+    <link rel="stylesheet" href="~/lib/sweetalert2/dist/sweetalert2.min.css" />
+    <!-- Modernizr JS 2.6.2-->
+    <script src="~/lib/modernizr/modernizr.min.js"></script>
+    <!-- jQuery cookie-->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="header-area">
+            <div class="top_header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 zero_mp">
+                            <div class="address">
+                                <i class="fa fa-home float-left"></i>
+                                <p>Some address</p>
+                            </div>
+                        </div>
+                        <!--End of col-md-4-->
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 zero_mp">
+                            <div class="phone">
+                                <i class="fa fa-phone float-left"></i>
+                                <p>+ 55 55 55 55</p>
+                            </div>
+                        </div>
+                        <!--End of col-md-4-->
+                        <div class="col-md-4">
+                            <div class="social_icon text-right">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-google-plus"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        <!--End of col-md-4-->
+                    </div>
+                    <!--End of row-->
+                </div>
+                <!--End of container-->
+            </div>
+            <!--End of top header-->
+        </div>
+        <!--end of header area-->
+    </header>
+    <div id="fh5co-offcanvas">
+        <a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
+        <div class="fh5co-bio">
+            <figure>
+                <img src="~/images/author_avatar.jpg" alt="Petq Ivanova" class="img-responsive">
+            </figure>
+            <h3 class="heading">About me</h3>
+            <h2>Petq Ivanova</h2>
+            <p>Some additional info!</p>
+            <ul class="fh5co-social">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            </ul>
+        </div>
+        <div class="fh5co-menu">
+            <div class="fh5co-box">
+                <h3 class="heading">Categories</h3>
+                <ul>
+                    <li><a href="#">Complects</a></li>
+                    <li><a href="#">Earrings</a></li>
+                    <li><a href="#">Necklaces &amp; collars</a></li>
+                    <li><a href="#">Bracelets</a></li>
+                    <li><a href="#">Rings</a></li>
+                </ul>
+            </div>
+            <div class="fh5co-box">
+                <h3 class="heading">Search</h3>
+                <form action="#">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Write here...">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END #fh5co-offcanvas -->
+    <header id="fh5co-header">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1 col-lg-1">
+                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+                </div>
+                <div class="col-lg-10 col-md-10 text-center">
+                    <h1 id="fh5co-logo"><a asp-controller="Home" asp-action="Index">Jewellery shop <sup>TM</sup></a></h1>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <!-- END #fh5co-header -->
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            <div id="fb-root"></div>
+            <script async defer src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2&appId=363836917389285&autoLogAppEvents=1"></script>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top text-muted" id="fh5co-footer">
+        <div class="container">
+            &copy; @DateTime.Now.Year - JewelleryShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
+        <script src="~/lib/waypoints/jquery.waypoints.min.js"></script>
+        <script src="~/lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
+                asp-fallback-src="~/lib/jquery-easing/jquery.easing.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"
+                asp-fallback-src="~/lib/waypoints/jquery.waypoints.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"
+                asp-fallback-src="~/lib/sweetalert2/dist/sweetalert2.all.min.js"
+                crossorigin="anonymous">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        (function () {
+            const successMsgData = '@(TempData[WebConstants.TempDataSuccessMessageKey])' + '';
+
+            if (successMsgData.length > 1) {
+                Swal.fire(
+                    'Success',
+                    successMsgData,
+                    'success'
+                );
+            }
+
+            const errorMsgData = '@(TempData[WebConstants.TempDataErrorMessageKey])' + '';
+
+            if (errorMsgData.length > 1) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: errorMsgData
+                });
+            }
+        })()
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
